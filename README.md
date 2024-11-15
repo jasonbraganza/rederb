@@ -1,2 +1,3 @@
 # rederb
-Derb Redux. Now in Go
+
+[Derb](https://github.com/jasonbraganza/derb) is Python. Rederb is Go.
