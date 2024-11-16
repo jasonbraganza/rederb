@@ -23,3 +23,6 @@ So rewriting something I use frequently is good motivation
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
 - [ ] First run!
 - [ ] Learn how github releases work, so I can distribute stuff
+
+## Gratitude
+- [John Barton](https://johnbarton.co/) for [godotenv](https://github.com/joho/godotenv)
