@@ -6,4 +6,4 @@
 
 ## Why rederb
 I want to learn Go.  
-So rewriting something I use frequently is a good motivation
+So rewriting something I use frequently is good motivation
