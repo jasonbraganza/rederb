@@ -1,6 +1,6 @@
 # rederb
 
-***Unfinished WIP***
+***Unfinished WIP! DO NOT USE***  
 [Derb](https://github.com/jasonbraganza/derb) is Python. Rederb is Go.
 
 
