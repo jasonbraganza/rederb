@@ -1,6 +1,8 @@
 # rederb
 
+***Unfinished WIP***
 [Derb](https://github.com/jasonbraganza/derb) is Python. Rederb is Go.
+
 
 ## Why rederb
 I want to learn Go.  
