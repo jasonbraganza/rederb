@@ -9,7 +9,7 @@ I want to learn Go.
 So rewriting something I use frequently is good motivation
 
 ## Tasks as I see them
-- [ ] Learn how pull requests work in go land
+- [X] Learn how pull requests work in go land
 - [ ] Find dependencies, like I use in Python
 - [ ] Learn the basic go toolchain. does not have to be perfect. Learn industry standards later. Right now I desperately need derb to work on the Pi
 - [ ] Write slowly. Learn how types work as you go. 
