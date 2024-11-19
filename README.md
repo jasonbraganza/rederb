@@ -27,4 +27,4 @@ So rewriting something I use frequently is good motivation
 
 ## Gratitude
 - [David Howden](https://github.com/dhowden) for [tag](https://github.com/dhowden/tag)
-- [John Barton](https://johnbarton.co/) for [godotenv](https://github.com/joho/godotenv)
+- [Steve Francia](https://spf13.com/) & Co. for [Viper](https://github.com/spf13/viper)
