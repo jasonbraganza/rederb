@@ -11,7 +11,7 @@ So rewriting something I use frequently is good motivation
 ## Tasks as I see them
 - [X] ~~Learn how pull requests work in go land~~
 - [X] ~~Find dependencies, like I use in Python~~  
-      godotenv(MIT)=python-dotenv  
+      godotenv(MIT)=python-dotenv (decided to use Viper) 
       dhowden/tag(BSD-2)=tinytag  
       gorilla/feeds(BSD-3)-or-eduncan911/podcast(MIT)=feedgen).   
       Nothing set in stone, yet
@@ -19,7 +19,8 @@ So rewriting something I use frequently is good motivation
 - [X] ~~Learn the basic go toolchain. does not have to be perfect. Learn industry standards later. Right now I desperately need derb to work on the Pi~~
 - [X] ~~Figure out how to read in environment variables from a .env file~~ 
 - [X] ~~Figure out to read metadata from audio files~~
-- [ ] Figure out how to write images from metadata to disk
+- [X] ~~Figure out how to write images from metadata to disk~~
+- [ ] Learn how to setup a feed
 - [ ] Write slowly. Learn how types work as you go. 
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
 - [ ] First run!
