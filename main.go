@@ -5,6 +5,8 @@ import (
 	"github.com/spf13/viper"
 	"os/user"
 	"path/filepath"
+	"strings"
+
 	//"github.com/dhowden/tag"
 	"log"
 	"os"
@@ -26,6 +28,7 @@ func main() {
 	// Put in a comma seperated list of env files to load
 	// figure out where go wants to put in env files
 
+	// 1. Load in my env, using Viper.
 	userHome, _ := user.Current()
 	viperConfigPath := filepath.Join(userHome.HomeDir, ".config", "rederb")
 	viper.AddConfigPath(viperConfigPath)
@@ -35,12 +38,25 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading environment file(s)")
 	}
-	my_full_name := viper.Get("FULL_NAME")
-	my_fav_artist := viper.Get("ARTIST")
-	fmt.Printf("Testing env loading with Viper: \n")
-	fmt.Printf("My name is %s and my favourite modern musician is %s\n", my_full_name, my_fav_artist)
 
-	// trying to load metadata from files
+	// 2. Setup the environment.
+	BASE_URL := viper.GetString("BASE_URL")
+	fmt.Printf("BASE_URL = %s\n", BASE_URL)
+	AUTHOR_NAME := viper.Get("AUTHOR_NAME")
+	fmt.Printf("Feed author name: %v\n", AUTHOR_NAME)
+	SUB_PATH := os.Getenv("SUB_PATH")
+	if strings.TrimSpace(SUB_PATH) == "" {
+		SUB_PATH = viper.GetString("SUB_PATH")
+	}
+	FEED_URL := ""
+	if SUB_PATH != "" {
+		FEED_URL = fmt.Sprintf("%s/%s", BASE_URL, SUB_PATH)
+	} else {
+		FEED_URL = BASE_URL
+	}
+	fmt.Printf("Feed URL is: %s\n", FEED_URL)
+
+	// 3. trying to load metadata from files
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: program <audio-file-path>")
 		os.Exit(1)
