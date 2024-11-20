@@ -18,7 +18,6 @@ import (
 
 // This main function brings everything together
 func main() {
-	// TODO: this is how i think it ought to go. implement according
 	// read file and get metadata
 	// set up a feed
 	// process episodes and get them all in a row
@@ -40,21 +39,21 @@ func main() {
 	}
 
 	// 2. Setup the environment.
-	BASE_URL := viper.GetString("BASE_URL")
-	fmt.Printf("BASE_URL = %s\n", BASE_URL)
-	AUTHOR_NAME := viper.Get("AUTHOR_NAME")
-	fmt.Printf("Feed author name: %v\n", AUTHOR_NAME)
-	SUB_PATH := os.Getenv("SUB_PATH")
-	if strings.TrimSpace(SUB_PATH) == "" {
-		SUB_PATH = viper.GetString("SUB_PATH")
+	BaseUrl := viper.GetString("BASE_URL")
+	fmt.Printf("BASE_URL = %s\n", BaseUrl)
+	AuthorName := viper.Get("AUTHOR_NAME")
+	fmt.Printf("Feed author name: %v\n", AuthorName)
+	SubPath := os.Getenv("SUB_PATH")
+	if strings.TrimSpace(SubPath) == "" {
+		SubPath = viper.GetString("SUB_PATH")
 	}
-	FEED_URL := ""
-	if SUB_PATH != "" {
-		FEED_URL = fmt.Sprintf("%s/%s", BASE_URL, SUB_PATH)
+	FeedUrl := ""
+	if SubPath != "" {
+		FeedUrl = fmt.Sprintf("%s/%s", BaseUrl, SubPath)
 	} else {
-		FEED_URL = BASE_URL
+		FeedUrl = BaseUrl
 	}
-	fmt.Printf("Feed URL is: %s\n", FEED_URL)
+	fmt.Printf("Feed URL is: %s\n", FeedUrl)
 
 	// 3. trying to load metadata from files
 	if len(os.Args) != 2 {
