@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"github.com/spf13/viper"
 	"os/user"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -15,6 +17,13 @@ import (
 // The original Python file was just an imperative set of instructions
 // Since I cannot replicate that here, I hope to just build a main function with calls to
 // what I think are obvious disparate functions
+
+// I need an interface that mimics the tag package interface to hold all my feed metadata.
+// so i can reuse it across functions
+
+//func getAudioFiles(path string) []string error {
+//
+//}
 
 // This main function brings everything together
 func main() {
@@ -28,6 +37,7 @@ func main() {
 	// figure out where go wants to put in env files
 
 	// 1. Load in my env, using Viper.
+	// find it in the rederb folder in the home/.config directory
 	userHome, _ := user.Current()
 	viperConfigPath := filepath.Join(userHome.HomeDir, ".config", "rederb")
 	viper.AddConfigPath(viperConfigPath)
@@ -39,28 +49,36 @@ func main() {
 	}
 
 	// 2. Setup the environment.
-	BaseUrl := viper.GetString("BASE_URL")
-	fmt.Printf("BASE_URL = %s\n", BaseUrl)
+	baseUrl := viper.GetString("BASE_URL")
 	AuthorName := viper.Get("AUTHOR_NAME")
 	fmt.Printf("Feed author name: %v\n", AuthorName)
-	SubPath := os.Getenv("SUB_PATH")
-	if strings.TrimSpace(SubPath) == "" {
-		SubPath = viper.GetString("SUB_PATH")
+	subPath := os.Getenv("SUB_PATH")
+	if strings.TrimSpace(subPath) == "" {
+		subPath = viper.GetString("SUB_PATH")
 	}
-	FeedUrl := ""
-	if SubPath != "" {
-		FeedUrl = fmt.Sprintf("%s/%s", BaseUrl, SubPath)
+	baseFeedUrl := ""
+	if subPath != "" {
+		baseFeedUrl = fmt.Sprintf("%s/%s", baseUrl, subPath)
 	} else {
-		FeedUrl = BaseUrl
+		baseFeedUrl = baseUrl
 	}
-	fmt.Printf("Feed URL is: %s\n", FeedUrl)
+	fmt.Printf("Feed URL is: %s\n", baseFeedUrl)
 
-	// 3. trying to load metadata from files
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: program <audio-file-path>")
-		os.Exit(1)
-	}
+	// 3. Get an audiobook folder and look for files in them
 
+	readInPath := bufio.NewReader(os.Stdin)
+	fmt.Println("Enter path to book directory: ")
+	bookFolderPath, _ := readInPath.ReadString('\n')
+	bookFolderName := path.Base(bookFolderPath)
+	feedUrl := fmt.Sprintf("%s/%s", baseFeedUrl, bookFolderName)
+	fmt.Println(feedUrl)
+	sliceOfAudioFiles, err := getListofAudioFiles(bookFolderPath)
+	//fmt.Println(sliceOfAudioFiles, sliceOfAudioFiles[0], len(sliceOfAudioFiles))
+	fmt.Printf("%v", sliceOfAudioFiles)
+
+	// Build a slice of filenames from the given directory
+
+	// Load basic feed metadata from the first file
 	// currently just getting all the metadata from the first file
 	// and writing it to a file in the same folder as the audiobook
 
@@ -84,6 +102,31 @@ func main() {
 	//	fmt.Printf("No cover art found in the Metadata\n")
 	//}
 
+}
+
+func getListofAudioFiles(folderPath string) ([]string, error) {
+	var audioFiles []string
+	//audioExtensions := map[string]bool{
+	//	".mp3": true,
+	//	".m4a": true,
+	//	".m4b": true,
+	//}
+
+	files, err := os.ReadDir(folderPath)
+	if err != nil {
+		return nil, fmt.Errorf("Error reading directory: %w", err)
+	}
+	fmt.Printf("Reading %d files\n", len(files))
+	for _, file := range files {
+		//ext := strings.ToLower(filepath.Ext(file.Name()))
+		//if audioExtensions[ext] {
+		//	audioFiles = append(audioFiles, file.Name())
+		//}
+		fmt.Println(file.Name())
+		audioFiles = append(audioFiles, file.Name())
+	}
+	fmt.Printf("%v", audioFiles)
+	return audioFiles, nil
 }
 
 //func getAudioFileMetadata(filePath string) (*MetadataInfo, error) {
