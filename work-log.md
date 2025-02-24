@@ -24,7 +24,8 @@
 - [X] ~~Learn the basic go toolchain. does not have to be perfect. Learn industry standards later. Right now I desperately need derb to work on the Pi~~
 - [X] ~~Figure out how to read in environment variables from a .env file~~
 - [X] ~~Figure out to read metadata from audio files~~ 
-- [ ] Change the whole project into a Cobra app (2025-02-23)
+- [X] Change the whole project into a Cobra app (2025-02-23) (done: 2025-02-24)
+- [ ] Create an app that just saves config and prints things out
 - [ ] Figure out how to write images from metadata to disk
 - [ ] Write slowly. Learn how types work as you go.
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
