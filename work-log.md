@@ -16,6 +16,7 @@
 - [ ] Write slowly. Learn how types work as you go.
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
 - [ ] First run!
+- [ ] Accept any folder, read the files in there and then write the feed back in there 
 - [ ] Learn how github releases work, so I can distribute stuff
 
 ---
