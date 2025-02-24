@@ -1,4 +1,17 @@
 # This file records raw thoughts, tasks, changes, and progress
+## How I see the program functioning
+- `rederb create` will take the files in the current folder and create a feed according to defaults
+- Empty, the site defaults to `http://localhost/audio-files-folder/feed-name.xml`
+- Command line flags, that'll let me set site and path. (the final part of the path will always be the folder name)
+  - for example: `http://localhost/fiction/audio-files-folder/feed-name.xml`
+  - only one level for now. site -> category -> book-folder
+- A config file, (yaml/env) that will hold defaults? or multiple choices?
+  - go create --category=fiction will use fiction category in the url?
+  - config file will also hold settings for feed, such as author, email, and site url
+
+
+
+
 
 ## Tasks as I see them
 - [X] ~~Learn how pull requests work in go land~~
