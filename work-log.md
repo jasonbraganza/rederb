@@ -1,6 +1,6 @@
 # This file records raw thoughts, tasks, changes, and progress
 ## How I see the program functioning
-- `rederb` with a path will just create a feed in the path
+- `rederb` with a path will just create a feed in the path (`rederb create`)
 - `rederb` with nothing should show help
 - `rederb create` will take the files in the current folder and create a feed according to defaults
 - Empty, the site defaults to `http://localhost/audio-files-folder/feed-name.xml`
