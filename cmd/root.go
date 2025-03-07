@@ -45,11 +45,6 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Hello world!")
-		x := viper.Get("FEED_URL")
-		fmt.Println(x)
-	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

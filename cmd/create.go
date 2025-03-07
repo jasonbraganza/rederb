@@ -28,6 +28,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/spf13/viper"
 
 	"github.com/spf13/cobra"
 )
@@ -38,7 +39,13 @@ var createCmd = &cobra.Command{
 	Short: "give a path, create a feed",
 	Long:  `give a path, create a feed`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("create called")
+		fmt.Println(viper.GetString("FEED_URL"))
+		viper.Set("FEED_URL", "https://ab.mjbraganza.com/fiction")
+		err := viper.WriteConfig()
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(viper.Get("FEED_URL"))
 	},
 }
 
