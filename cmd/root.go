@@ -38,13 +38,13 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "rederb",
-	Short: "do, redo. derb, rederb",
-	Long:  `Tiny tool to create podcast rss feeds from a folder full of audio files (m4a, m4b, mp3)`,
+	Use:     "rederb",
+	Short:   "do, redo. derb, rederb",
+	Long:    `Tiny tool to create podcast rss feeds from a folder full of audio files (m4a, m4b, mp3)`,
+	Version: "0.0.1",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
-	Version: "0.0.1",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -63,7 +63,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.rederb.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/rederb/rederb.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -79,11 +79,13 @@ func initConfig() {
 		// Find home directory.
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
+		// Set default config path
+		configHome := home + "/.config/rederb/"
 
 		// Search config in home directory with name ".rederb" (without extension).
-		viper.AddConfigPath(home)
+		viper.AddConfigPath(configHome)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".rederb")
+		viper.SetConfigName("rederb")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
