@@ -45,6 +45,11 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Hello world!")
+		x := viper.Get("FEED_URL")
+		fmt.Println(x)
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -79,10 +84,11 @@ func initConfig() {
 		// Find home directory.
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
+
 		// Set default config path
 		configHome := home + "/.config/rederb/"
 
-		// Search config in home directory with name ".rederb" (without extension).
+		// Search config in home config directory with name "rederb.yaml"
 		viper.AddConfigPath(configHome)
 		viper.SetConfigType("yaml")
 		viper.SetConfigName("rederb")
