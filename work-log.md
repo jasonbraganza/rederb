@@ -34,5 +34,6 @@
 - [ ] First run!
 - [ ] Accept any folder, read the files in there and then write the feed back in there
 - [ ] Learn how github releases work, so I can distribute stuff
+- [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
 
 ---
