@@ -1,7 +1,9 @@
 package userFacingInterface
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func amICalled() {
+func AmICalled() {
 	fmt.Println("You called me!")
 }
