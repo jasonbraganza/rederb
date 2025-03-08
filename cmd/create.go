@@ -31,18 +31,13 @@ import (
 	"rederb/internal/userFacingInterface"
 )
 
-type promptContent struct {
-	errorMsg string
-	label    string
-}
-
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
 	Short: "give a path, create a feed",
 	Long:  `give a path, create a feed`,
 	Run: func(cmd *cobra.Command, args []string) {
-		userFacingInterface.AmICalled()
+		userFacingInterface.CreateNewNote()
 	},
 }
 
