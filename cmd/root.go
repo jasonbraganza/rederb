@@ -28,13 +28,13 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"os"
 )
 
 var cfgFile string
+var audioFilePath string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -64,6 +64,7 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.config/rederb/rederb.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&audioFilePath, "path", "p", "./", "path to audio files")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
