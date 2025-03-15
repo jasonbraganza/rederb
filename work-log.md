@@ -27,7 +27,8 @@
 - [X] ~~Figure out how to read in environment variables from a .env file~~
 - [X] ~~Figure out to read metadata from audio files~~
 - [X] Change the whole project into a Cobra app (2025-02-23) (done: 2025-02-24)
-- [ ] Create an app that just saves config and prints things out
+- [X] ~~Create an app that just saves config~~ (2025-03-15) 
+- [ ] and prints things out
 - [ ] Figure out how to write images from metadata to disk
 - [ ] Write slowly. Learn how types work as you go.
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
