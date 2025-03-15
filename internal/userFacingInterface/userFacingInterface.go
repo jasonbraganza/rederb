@@ -6,8 +6,16 @@ import (
 	"github.com/spf13/viper"
 )
 
+/*
+This set of functions, shows a list of feed categories
+and returns the selected one. If a new category is added,
+it offers to save it to the configuration file.
+*/
+
 func ShowFeedCategories() string {
-	
+	// Main function that calls the rest in this section
+	// and returns the category
+
 	feedCategories := viper.GetStringSlice("sub_url")
 
 	// Get length of current category list to track changes
