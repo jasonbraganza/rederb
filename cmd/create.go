@@ -28,8 +28,8 @@ POSSIBILITY OF SUCH DAMAGE.
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
+	"rederb/internal/createFeedEngine"
 	"rederb/internal/userFacingInterface"
 )
 
@@ -40,9 +40,8 @@ var createCmd = &cobra.Command{
 	Long:  `give a path, create a feed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		//userFacingInterface.CreateNewNote()
-		fmt.Println(audioFilePath)
-		podcastFeedUrl := userFacingInterface.GetNewPodcastFeedUrl()
-		fmt.Println(podcastFeedUrl)
+		podcastFeedRawUrl := userFacingInterface.GetNewPodcastFeedRawUrl()
+		createFeedEngine.CreateFeed(podcastFeedRawUrl, audioFilePath)
 	},
 }
 

@@ -11,7 +11,8 @@ import (
 This set of functions constructs a url for the feed
 */
 
-func GetNewPodcastFeedUrl() string {
+func GetNewPodcastFeedRawUrl() string {
+
 	// construct a feed structure getting values from config file
 	feedMetaData := rederbStructures.FeedMeta{
 		AuthorName:  viper.GetString("author_name"),
