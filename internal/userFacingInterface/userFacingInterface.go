@@ -4,26 +4,28 @@ import (
 	"fmt"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/viper"
-	"rederb/internal/rederbStructures"
 )
 
-func ShowFeedCategories() {
-	feedMetaData := rederbStructures.FeedMeta{
-		AuthorName:  viper.GetString("author_name"),
-		AuthorEmail: viper.GetString("author_email"),
-		BaseUrl:     viper.GetString("base_url"),
-		FeedUrl:     viper.GetString("feed_url"),
-		SubUrlSlice: viper.GetStringSlice("sub_url"),
+func ShowFeedCategories() string {
+	
+	feedCategories := viper.GetStringSlice("sub_url")
+
+	// Get length of current category list to track changes
+	originalCategoryListLength := len(feedCategories)
+
+	selectedCategory := gaFeedCategories(&feedCategories)
+
+	// Use Viper to write changes to config file, if user says so
+	if len(feedCategories) != originalCategoryListLength {
+		writeConfigToFile(&feedCategories)
 	}
 
-	feedCategories := feedMetaData.SubUrlSlice
-	fmt.Println(feedCategories)
-	garFeedCategories(&feedCategories)
-	fmt.Println(feedCategories)
+	// Go back to the caller
+	return selectedCategory
 }
 
-func garFeedCategories(categoryList *[]string) {
-	// Get, Add, Remove Feed Categories
+func gaFeedCategories(categoryList *[]string) string {
+	// Get, Add Feed Categories
 	index := -1
 	var result string
 	var err error
@@ -44,9 +46,30 @@ func garFeedCategories(categoryList *[]string) {
 
 	if err != nil {
 		fmt.Printf("Prompt failed %v\n", err)
+	}
+
+	return result
+
+}
+
+func writeConfigToFile(categoryList *[]string) {
+	// Get Viper to write a changed config to disk
+	fmt.Println(*categoryList)
+
+	prompt := promptui.Prompt{
+		Label:     "The feed category list has changed. Write changes to config?",
+		IsConfirm: true,
+	}
+
+	result, err := prompt.Run()
+
+	if err != nil {
+		fmt.Printf("Config file unchanged\n")
 		return
 	}
 
-	fmt.Printf("You chose %s\n", result)
-
+	if result == "y" {
+		viper.Set("sub_url", *categoryList)
+		viper.WriteConfig()
+	}
 }

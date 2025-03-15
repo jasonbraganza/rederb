@@ -27,6 +27,7 @@ POSSIBILITY OF SUCH DAMAGE.
 package cmd
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"rederb/internal/userFacingInterface"
 )
@@ -38,7 +39,8 @@ var createCmd = &cobra.Command{
 	Long:  `give a path, create a feed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		//userFacingInterface.CreateNewNote()
-		userFacingInterface.ShowFeedCategories()
+		category := userFacingInterface.ShowFeedCategories()
+		fmt.Println(category)
 	},
 }
 
