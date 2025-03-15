@@ -39,8 +39,8 @@ var createCmd = &cobra.Command{
 	Long:  `give a path, create a feed`,
 	Run: func(cmd *cobra.Command, args []string) {
 		//userFacingInterface.CreateNewNote()
-		category := userFacingInterface.ShowFeedCategories()
-		fmt.Println(category)
+		podcastFeedUrl := userFacingInterface.GetNewPodcastFeedUrl()
+		fmt.Println(podcastFeedUrl)
 	},
 }
 
