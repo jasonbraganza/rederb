@@ -17,28 +17,28 @@ func ShowFeedCategories() {
 	}
 
 	feedCategories := feedMetaData.SubUrlSlice
-	garFeedCategories(feedCategories)
-
+	fmt.Println(feedCategories)
+	garFeedCategories(&feedCategories)
+	fmt.Println(feedCategories)
 }
 
-func garFeedCategories(categoryList []string) {
+func garFeedCategories(categoryList *[]string) {
 	// Get, Add, Remove Feed Categories
 	index := -1
 	var result string
 	var err error
-	items := categoryList
 
 	for index < 0 {
 		prompt := promptui.SelectWithAdd{
 			Label:    "Select a Feed category",
-			Items:    items,
+			Items:    *categoryList,
 			AddLabel: "Add another category",
 		}
 
 		index, result, err = prompt.Run()
 
 		if index == -1 {
-			items = append(items, result)
+			*categoryList = append(*categoryList, result)
 		}
 	}
 
@@ -48,4 +48,5 @@ func garFeedCategories(categoryList []string) {
 	}
 
 	fmt.Printf("You chose %s\n", result)
+
 }
