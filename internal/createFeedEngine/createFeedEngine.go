@@ -9,7 +9,7 @@ import (
 func CreateFeed(url string, path string) {
 	rawPath := path
 	rawUrl := url
-	fmt.Println(rawUrl)
+
 	var fullPath string
 
 	if rawPath == "./" {
@@ -17,5 +17,20 @@ func CreateFeed(url string, path string) {
 	} else {
 		fullPath, _ = filepath.Abs(rawPath)
 	}
-	fmt.Println(fullPath)
+	fullPathStat, err := os.Stat(fullPath)
+	if err != nil {
+		fmt.Println("Not a valid path")
+		os.Exit(1)
+	}
+	if fullPathStat.IsDir() {
+		PodcastUrl := processPathAndCreateURL(&fullPath, rawUrl)
+		fmt.Println(PodcastUrl)
+	} else {
+		fmt.Println("Not a directory path, have you given a filename?")
+	}
+
+}
+
+func processPathAndCreateURL(fullPath *string, rawUrl string) string {
+	return "hello"
 }

@@ -29,7 +29,8 @@
 - [X] Change the whole project into a Cobra app (2025-02-23) (done: 2025-02-24)
 - [X] ~~Create an app that just saves config~~ (2025-03-15)
 - [X] ~~Get path from command line~~
-- [ ] verify path,
+- [X] verify path,
+- [ ] get stem from path and tag to feed url
 - [ ] split path to get end folder to tag on to url
 - [ ] and prints things out
 - [ ] Figure out how to write images from metadata to disk
