@@ -27,7 +27,7 @@ func GetNewPodcastFeedRawUrl() string {
 	// Set URL to baseURL
 	url := feedMetaData.BaseUrl
 	if feedCategory == "none" {
-		return url
+		return fmt.Sprint(url, "/")
 	} else {
 		url = fmt.Sprint(feedMetaData.BaseUrl, "/", feedCategory, "/")
 		return url
