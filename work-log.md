@@ -35,8 +35,9 @@
 - [X] and prints things out
 - [X] figure out how to read in the contents of a directory and print filenames to screen
 - [X] figure out how to import a tag package and get it to read the filenames you give it and print out the metadata it gets
-- [ ] Figure out how to write images from metadata to disk
+- [X] Figure out how to write images from metadata to disk
 - [X] Write slowly. Learn how types work as you go.
+- [ ] Learn how to create a feed
 - [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
 - [ ] First run!
 - [ ] Accept any folder, read the files in there and then write the feed back in there
