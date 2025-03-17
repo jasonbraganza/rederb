@@ -5,12 +5,14 @@
 
 ## What is ReDerb
 ReDerb takes a path, containing a folder full of audio files and creates a podcast feed … 
+
 ## Requirements
+- Works only on 64-bit Linux
 - A folder full of audio files that have audio tags in them.  
  (if not, use something like Ex Falso, Puddletag, and Kid3 on Linux or Tag & Rename on Windows (paid software, I’m not aware of opensource options on Windows) to tag them the way you want.)
 
 ### With the following constraints …
-- with the settings you provide in ReDerb’s settings file
+- needs feed settings, that you will provide in ReDerb’s settings file
 - with only a single directory. ReDerb does not recurse into subdirectories
 
 ## Why ReDerb
