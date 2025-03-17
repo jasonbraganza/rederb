@@ -4,7 +4,7 @@
 [Derb](https://github.com/jasonbraganza/derb) is Python. ReDerb is Go.
 
 ## What is ReDerb
-ReDerb takes a path, containing a folder full of audio files and creates a podcast feed.  
+ReDerb takes a path, containing a folder full of audio files and creates a RSS feed.  
 I need to serve audio files to my family, and serving them up as a feed, 
 so that they could subscribe to it in their podcast players seemed like a good idea.
 
