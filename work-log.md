@@ -18,7 +18,7 @@
 ## Tasks as I see them
 - [X] ~~Learn how pull requests work in go land~~
 - [X] ~~Find dependencies, like I use in Python~~  
-  godotenv(MIT)=python-dotenv  
+  viper(MIT)=python-dotenv  
   dhowden/tag(BSD-2)=tinytag  
   gorilla/feeds(BSD-3)-or-eduncan911/podcast(MIT)=feedgen).   
   Nothing set in stone, yet
