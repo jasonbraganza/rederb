@@ -25,3 +25,4 @@ So rewriting something I use frequently is good motivation
 ## Gratitude
 - [David Howden](https://github.com/dhowden) for [tag](https://github.com/dhowden/tag)
 - [Steve Francia](https://spf13.com/) & Co. for [Cobra](https://github.com/spf13/cobra) and [Viper](https://github.com/spf13/viper)
+- [Jason Moiron](https://github.com/jmoiron) and all the other friendly gorillas behind [Gorilla Feeds](https://github.com/gorilla/feeds)
