@@ -22,6 +22,10 @@ So rewriting something I use frequently is good motivation
 ## Tasks as I see them
 - now in the [work log](work-log.md)
 
+## License
+[BSD-2-Clause license.](https://opensource.org/license/bsd-2-clause)
+See [LICENSE](LICENSE)
+
 ## Gratitude
 - [David Howden](https://github.com/dhowden) for [tag](https://github.com/dhowden/tag)
 - [Steve Francia](https://spf13.com/) & Co. for [Cobra](https://github.com/spf13/cobra) and [Viper](https://github.com/spf13/viper)
