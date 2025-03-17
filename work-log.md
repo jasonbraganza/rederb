@@ -37,11 +37,13 @@
 - [X] figure out how to import a tag package and get it to read the filenames you give it and print out the metadata it gets
 - [X] Figure out how to write images from metadata to disk
 - [X] Write slowly. Learn how types work as you go.
-- [ ] Learn how to create a feed
-- [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
+- [X] Learn how to create a feed
+- [X] Accept any folder, read the files in there and then write the feed back in there
+- [ ] Create a feed
 - [ ] First run!
-- [ ] Accept any folder, read the files in there and then write the feed back in there
 - [ ] Learn how github releases work, so I can distribute stuff
+
+- [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
 - [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
 
 ---

@@ -5,6 +5,7 @@
 # mjb Additions
 *.go_
 tt.go
+ss.go
 
 # Binaries for programs and plugins
 *.exe
