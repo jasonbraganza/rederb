@@ -1,8 +1,8 @@
 # This file records raw thoughts, tasks, changes, and progress
 ## How I see the program functioning
 - `rederb` with a path will just create a feed in the path (`rederb create`)
-- `rederb` with nothing should show help
-- `rederb create` will take the files in the current folder and create a feed according to defaults
+- `rederb` with nothing ~~should show help~~ should just create a feed in the current folder if there are any audio files in there
+- `rederb create` should do the same as above: take the files in the current folder and create a feed according to defaults
 - Empty, the site defaults to `http://localhost/audio-files-folder/feed-name.xml`
 - Command line flags, that'll let me set site and path. (the final part of the path will always be the folder name)
     - for example: `http://localhost/fiction/audio-files-folder/feed-name.xml`
@@ -40,6 +40,8 @@
 - [X] Write slowly. Learn how types work as you go.
 - [X] Learn how to create a feed
 - [X] Accept any folder, read the files in there and then write the feed back in there
+- [ ] check only for audio files and print those
+- [ ] do we need to sort by filename? or track num? figure that out.
 - [ ] Create a feed
 - [ ] First run!
 - [ ] Learn how github releases work, so I can distribute stuff
