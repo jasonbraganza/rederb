@@ -21,6 +21,7 @@
   viper(MIT)=python-dotenv  
   dhowden/tag(BSD-2)=tinytag  
   gorilla/feeds(BSD-3)=feedgen  
+  *and brand new:* goreleaser for releases 
   ~~Nothing set in stone, yet~~  *(Update, 2025-03-17: Now it is)*
 - [X] Update Project LICENSE once I figure out above (BSD 2 Clause)
 - [X] Learn the basic go toolchain. does not have to be perfect. Learn industry standards later. Right now I desperately need derb to work on the Pi
