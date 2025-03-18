@@ -128,7 +128,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 		}
 
 		// Now add episodes to the feed by looping through our keys list and audiofile dict
-		counter := time.Minute
+		counter := time.Second
 		for _, audioEntry := range sortedAudioDictKeys {
 			audioData := dictOfAudioEntriesWithTags[audioEntry]
 			feedEntry := &feeds.Item{
@@ -144,7 +144,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 				Id:          feeds.NewUUID().String(),
 			}
 			feed.Items = append(feed.Items, feedEntry)
-			counter += counter + 5
+			counter += counter + 10
 		}
 
 		// Write the feed to a file and call it a day
