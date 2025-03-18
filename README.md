@@ -4,8 +4,8 @@
 [Derb](https://github.com/jasonbraganza/derb) is Python. ReDerb is Go.
 
 ## What is ReDerb
-ReDerb is a small, niche utility that takes a path, containing a folder 
-full of audio files and creates a RSS feed.  
+ReDerb is a small, niche utility that takes a path to a directory full of audio files
+and creates a RSS feed of the audio files in there to serve as a podcast feed.  
 I need to serve audio files to my family, and serving them up as a feed, 
 so that they could subscribe to it in their podcast players seemed like a good idea.
 
@@ -20,9 +20,10 @@ so that they could subscribe to it in their podcast players seemed like a good i
 
 ## Why ReDerb
 I want to learn Go.  
-So rewriting something I use frequently is good motivation
+So rewriting something I use frequently is good motivation  
+The code, to my mind, is both not idiomatic (because of ignorance, new programmer) as well as wildly overkill. (I have a new hammer / throw everything at the wall to see what sticks [^1] )
 
-
+[^1]: I am the undisputed champ of mixed metaphors though.
 
 ## Tasks as I see them
 - now in the [work log](work-log.md)
