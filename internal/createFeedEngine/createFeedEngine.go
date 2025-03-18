@@ -10,11 +10,21 @@ import (
 	"path/filepath"
 	"rederb/internal/rederbStructures"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
 
 /* ------------------------------------------------------------------------- */
+// Tuple struct, because I don’t want to bother with extending tag metadata
+// This will come in handy, because I need both filenames (for the url)
+// as well as metadata to create the feed
+
+type xtag struct {
+	audiotags tag.Metadata
+	filename  string
+	filesize  string
+}
 
 /* ------------------------------------------------------------------------- */
 
@@ -23,7 +33,6 @@ func CreateFeed(rawUrl string, rawPath string) {
 	//rawUrl := url
 	var fullPath string
 	var err error
-
 	// Set of extensions to validate against lower down the page
 	validExtensions := map[string]bool{
 		".mp3": true,
@@ -32,9 +41,8 @@ func CreateFeed(rawUrl string, rawPath string) {
 	}
 	// to hold a list (string slice) of audio files later
 	var listOfAudioEntries []string
-
-	// a dictionary of audio files with metadata. The keys are the track numbers
-	var dictOfAudioEntriesWithTags map[int]tag.Metadata
+	// a dictionary of audio files with metadata and filename. The keys are the track numbers
+	var dictOfAudioEntriesWithTags map[int]xtag
 
 	// If current folder, get absolute path via cwd, or just abs path
 	if rawPath == "./" {
@@ -83,7 +91,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 
 		// Now we can range over the list and call the values in the dict by each key
 		for _, audioDictObject := range sortedAudioDictKeys {
-			fmt.Println(audioDictObject, dictOfAudioEntriesWithTags[audioDictObject].Title())
+			fmt.Println(audioDictObject, dictOfAudioEntriesWithTags[audioDictObject].audiotags.Title())
 			fmt.Println("-------------------------------------------------------------------")
 		}
 
@@ -97,7 +105,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 		feedMetaDetails := dictOfAudioEntriesWithTags[sortedAudioDictKeys[0]]
 
 		// Grab cover image from metadata and write to file
-		imgData := feedMetaDetails.Picture().Data
+		imgData := feedMetaDetails.audiotags.Picture().Data
 		coverArt := filepath.Join(fullPath, "cover.jpg")
 		err = os.WriteFile(coverArt, imgData, 0644)
 		if err != nil {
@@ -110,9 +118,9 @@ func CreateFeed(rawUrl string, rawPath string) {
 
 		// Instantiate a new feed and start pulling details in
 		feed := &feeds.Feed{
-			Title:       feedMetaDetails.Album(),
+			Title:       feedMetaDetails.audiotags.Album(),
 			Link:        &feeds.Link{Href: PodcastUrl},
-			Description: feedMetaDetails.Lyrics(),
+			Description: feedMetaDetails.audiotags.Lyrics(),
 			Author:      &feeds.Author{Name: feedAuthorDetails.AuthorName, Email: feedAuthorDetails.AuthorEmail},
 			Created:     samayMayaHai,
 			Image:       &feeds.Image{Url: coverArtUrl},
@@ -123,9 +131,14 @@ func CreateFeed(rawUrl string, rawPath string) {
 		for _, audioEntry := range sortedAudioDictKeys {
 			audioData := dictOfAudioEntriesWithTags[audioEntry]
 			feedEntry := &feeds.Item{
-				Title:       audioData.Title(),
-				Link:        &feeds.Link{Href: PodcastUrl},
-				Description: audioData.Lyrics(),
+				Title: audioData.audiotags.Title(),
+				Link:  &feeds.Link{Href: fmt.Sprintf(PodcastUrl + "/" + audioData.filename)},
+				Enclosure: &feeds.Enclosure{
+					Url:    PodcastUrl + "/" + audioData.filename,
+					Length: audioData.filesize,
+					Type:   "audio/mpeg",
+				},
+				Description: audioData.audiotags.Lyrics(),
 				Created:     samayMayaHai.Add(counter),
 			}
 			feed.Items = append(feed.Items, feedEntry)
@@ -163,22 +176,26 @@ func processPathAndCreateURL(fullPath string, rawUrl string) string {
 
 /* ------------------------------------------------------------------------- */
 
-// Build a dictionary (map) of audio files with metadata
-func buildADictOfAudioFilesWithTags(path string, fileNameList []string) map[int]tag.Metadata {
-	rawAudioFileObjectMap := make(map[int]tag.Metadata) // Temporary unsorted dict
+// Build a dictionary (map) of audio files with metadata and filename
+func buildADictOfAudioFilesWithTags(path string, fileNameList []string) map[int]xtag {
+	rawAudioFileObjectMap := make(map[int]xtag) // Temporary unsorted dict
 	for _, fileName := range fileNameList {
+		var err error
+		var audioFileObject xtag
+
 		fileNameWithPath := filepath.Join(path, fileName)
+		filestat, _ := os.Stat(fileNameWithPath)
+		audioFileObject.filesize = strconv.FormatInt(filestat.Size(), 10)
 		fileOpened, _ := os.Open(fileNameWithPath)
 		defer fileOpened.Close()
-		audioFileObject, err := tag.ReadFrom(fileOpened)
+		audioFileObject.filename = fileName
+		audioFileObject.audiotags, err = tag.ReadFrom(fileOpened)
 		if err != nil {
 			log.Fatal(err)
 		}
-		key, _ := audioFileObject.Track()
+		key, _ := audioFileObject.audiotags.Track()
 		rawAudioFileObjectMap[key] = audioFileObject
 	}
 
 	return rawAudioFileObjectMap
 }
-
-/* ------------------------------------------------------------------------- */
