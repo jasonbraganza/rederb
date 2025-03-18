@@ -24,6 +24,13 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
+
+// for references look at feed gen reference / atom reference / rss reference
+// http://www.rssboard.org/rss-specification
+// https://cyber.harvard.edu/rss/rss.html
+// https://feedgen.kiesow.be/api.html
+// https://validator.w3.org/feed/docs/atom.html
+
 package main
 
 import "rederb/cmd"
