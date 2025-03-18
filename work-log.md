@@ -40,8 +40,9 @@
 - [X] Write slowly. Learn how types work as you go.
 - [X] Learn how to create a feed
 - [X] Accept any folder, read the files in there and then write the feed back in there
-- [ ] check only for audio files and print those
-- [ ] do we need to sort by filename? or track num? figure that out.
+- [X] check only for audio files and print those
+- [X] print them sorted? so i can pass them along in that order to the rss library
+- [X] do we need to sort by filename? or track num? figure that out. *(Narrator: we used track numbers)*
 - [ ] Create a feed
 - [ ] First run!
 - [ ] Learn how github releases work, so I can distribute stuff

@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -64,9 +65,19 @@ func CreateFeed(url string, path string) {
 
 		// Build a list of audiofile objects using tag
 		dictOfAudioEntriesWithTags = buildADictOfAudioFilesWithTags(fullPath, listOfAudioEntries)
-		for key, item := range dictOfAudioEntriesWithTags {
-			fmt.Println(key, item.Title())
-			fmt.Println("------------------------------------------------------------------------------")
+
+		// Sort the keys of the dict we just received.
+		// The keys are track numbers. We put the keys into a list and sort them
+		var sortedAudioDictKeys []int
+		for key, _ := range dictOfAudioEntriesWithTags {
+			sortedAudioDictKeys = append(sortedAudioDictKeys, key)
+		}
+		sort.Ints(sortedAudioDictKeys)
+
+		// Now we can range over the list and call the values in the dict by each key
+		for _, audioDictObject := range sortedAudioDictKeys {
+			fmt.Println(audioDictObject, dictOfAudioEntriesWithTags[audioDictObject].Title())
+			fmt.Println("-------------------------------------------------------------------")
 		}
 
 	} else {
@@ -83,8 +94,8 @@ func CreateFeed(url string, path string) {
 func processPathAndCreateURL(fullPath string, rawUrl string) string {
 	var podUrl string
 	workingPath := strings.Split(fullPath, "/")
-	lastBitofPath := workingPath[len(workingPath)-1]
-	podUrl = fmt.Sprint(rawUrl, lastBitofPath)
+	lastBitOfPath := workingPath[len(workingPath)-1]
+	podUrl = fmt.Sprint(rawUrl, lastBitOfPath)
 	return podUrl
 }
 
