@@ -96,6 +96,15 @@ func CreateFeed(rawUrl string, rawPath string) {
 		// Grab one audio file to pull metadata for the feed’s main details
 		feedMetaDetails := dictOfAudioEntriesWithTags[sortedAudioDictKeys[0]]
 
+		// Grab cover image from metadata and write to file
+		imgData := feedMetaDetails.Picture().Data
+		coverArt := filepath.Join(fullPath, "cover.jpg")
+		err = os.WriteFile(coverArt, imgData, 0644)
+		if err != nil {
+			fmt.Println("There is no cover art")
+		}
+		coverArtUrl := fmt.Sprint(PodcastUrl + "/cover.jpg")
+
 		// Dummy time object that I’ll keep incrementing by a second to add new entries
 		samayMayaHai := time.Now()
 
@@ -106,10 +115,30 @@ func CreateFeed(rawUrl string, rawPath string) {
 			Description: feedMetaDetails.Lyrics(),
 			Author:      &feeds.Author{Name: feedAuthorDetails.AuthorName, Email: feedAuthorDetails.AuthorEmail},
 			Created:     samayMayaHai,
+			Image:       &feeds.Image{Url: coverArtUrl},
 		}
 
+		// Now add episodes to the feed by looping through our keys list and audiofile dict
+		counter := time.Minute
+		for _, audioEntry := range sortedAudioDictKeys {
+			audioData := dictOfAudioEntriesWithTags[audioEntry]
+			feedEntry := &feeds.Item{
+				Title:       audioData.Title(),
+				Link:        &feeds.Link{Href: PodcastUrl},
+				Description: audioData.Lyrics(),
+				Created:     samayMayaHai.Add(counter),
+			}
+			feed.Items = append(feed.Items, feedEntry)
+			counter += counter + 5
+		}
+
+		// Write the feed to a file and call it a day
 		feedFilePath := filepath.Join(fullPath, "feed.xml")
-		feedFile, _ := os.Create(feedFilePath)
+		feedFile, err := os.Create(feedFilePath)
+		if err != nil {
+			fmt.Println("Could not create feed.xml")
+			os.Exit(1)
+		}
 		defer feedFile.Close()
 		feed.WriteRss(feedFile)
 
