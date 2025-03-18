@@ -3,20 +3,27 @@ package createFeedEngine
 import (
 	"fmt"
 	"github.com/dhowden/tag"
+	"github.com/gorilla/feeds"
+	"github.com/spf13/viper"
 	"log"
 	"os"
 	"path/filepath"
+	"rederb/internal/rederbStructures"
 	"sort"
 	"strings"
+	"time"
 )
 
 /* ------------------------------------------------------------------------- */
 
-func CreateFeed(url string, path string) {
-	rawPath := path
-	rawUrl := url
+/* ------------------------------------------------------------------------- */
+
+func CreateFeed(rawUrl string, rawPath string) {
+	//rawPath := path
+	//rawUrl := url
 	var fullPath string
 	var err error
+
 	// Set of extensions to validate against lower down the page
 	validExtensions := map[string]bool{
 		".mp3": true,
@@ -63,7 +70,7 @@ func CreateFeed(url string, path string) {
 			}
 		}
 
-		// Build a list of audiofile objects using tag
+		// Build a map/dict of audiofile objects using tag
 		dictOfAudioEntriesWithTags = buildADictOfAudioFilesWithTags(fullPath, listOfAudioEntries)
 
 		// Sort the keys of the dict we just received.
@@ -79,6 +86,32 @@ func CreateFeed(url string, path string) {
 			fmt.Println(audioDictObject, dictOfAudioEntriesWithTags[audioDictObject].Title())
 			fmt.Println("-------------------------------------------------------------------")
 		}
+
+		// Setup a feed
+		// get author/email from Viper. Dumping into a struct to prevent repeated Viper calls
+		feedAuthorDetails := rederbStructures.FeedMeta{
+			AuthorName:  viper.GetString("author_name"),
+			AuthorEmail: viper.GetString("author_email"),
+		}
+		// Grab one audio file to pull metadata for the feed’s main details
+		feedMetaDetails := dictOfAudioEntriesWithTags[sortedAudioDictKeys[0]]
+
+		// Dummy time object that I’ll keep incrementing by a second to add new entries
+		samayMayaHai := time.Now()
+
+		// Instantiate a new feed and start pulling details in
+		feed := &feeds.Feed{
+			Title:       feedMetaDetails.Album(),
+			Link:        &feeds.Link{Href: PodcastUrl},
+			Description: feedMetaDetails.Lyrics(),
+			Author:      &feeds.Author{Name: feedAuthorDetails.AuthorName, Email: feedAuthorDetails.AuthorEmail},
+			Created:     samayMayaHai,
+		}
+
+		feedFilePath := filepath.Join(fullPath, "feed.xml")
+		feedFile, _ := os.Create(feedFilePath)
+		defer feedFile.Close()
+		feed.WriteRss(feedFile)
 
 	} else {
 		fmt.Println("Not a directory path, have you given a filename?")
@@ -116,17 +149,7 @@ func buildADictOfAudioFilesWithTags(path string, fileNameList []string) map[int]
 		rawAudioFileObjectMap[key] = audioFileObject
 	}
 
-	// Sort the keys this function to move to where I actually want to build the feed later
-	// experimented with it here
-	//keysToSort := make([]int, 0, len(rawAudioFileObjectMap))
-	//for key := range rawAudioFileObjectMap {
-	//	keysToSort = append(keysToSort, key)
-	//}
-	//sort.Ints(keysToSort)
-	//// Iterate over the sorted keys
-	//for _, k := range keys {
-	//	fmt.Println(k, ":", m[k])
-	//}
-
 	return rawAudioFileObjectMap
 }
+
+/* ------------------------------------------------------------------------- */
