@@ -46,7 +46,7 @@
 - [X] Create a feed
 - [X] First run!
 - [X] Learn how github releases work, so I can distribute stuff
-- [ ] if there is a cover, leave it alone
+- [X] if there is a cover, leave it alone
 - [ ] better changelog in goreleaser
 - [ ] Add sample config file and include instructions on placement
 - [ ] Integrate feedback from friends and family

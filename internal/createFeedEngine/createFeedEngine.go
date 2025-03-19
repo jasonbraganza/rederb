@@ -107,11 +107,25 @@ func CreateFeed(rawUrl string, rawPath string) {
 
 		// Grab cover image from metadata and write to file
 		imgData := feedMetaDetails.audioTags.Picture().Data
-		coverArt := filepath.Join(fullPath, "cover.jpg")
-		err = os.WriteFile(coverArt, imgData, 0644)
+		imgFile := filepath.Join(fullPath, "cover.jpg")
+		coverArt, err := os.OpenFile(imgFile, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0644)
 		if err != nil {
-			fmt.Println("There is no cover art")
+			if os.IsExist(err) {
+				fmt.Println("Cover already exists. Skipping.")
+			} else {
+				fmt.Println("Error: ", err)
+			}
+			return
 		}
+		//err = os.WriteFile(coverArt, imgData, 0644)
+		//if err != nil {
+		//	fmt.Println("There is no cover art")
+		//}
+		_, err = coverArt.Write(imgData)
+		if err != nil {
+			fmt.Println("Error: ", err)
+		}
+
 		coverArtUrl := fmt.Sprint(PodcastUrl + "/cover.jpg")
 
 		// Dummy time object that I’ll keep incrementing by a second to add new entries
