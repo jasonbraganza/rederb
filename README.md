@@ -34,6 +34,7 @@ Also, I wrote this primarily to help me learn Go.
 So rather than actual code contributions, I’d love for you to review my code and tell me
 - what you would see improved in terms of the code written
 - while also telling / teaching me *why* you think it should be changed the way you suggest it should be  
+  
 In a nutshell, I’d love your contribution, to be teaching me.
 
 ## License
