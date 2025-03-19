@@ -17,8 +17,8 @@ import (
 
 /* ------------------------------------------------------------------------- */
 // Custom struct, because I don’t want to bother with extending tag metadata
-// This will come in handy, because I need both filenames (for the url),
-// filesizes for enclosures, as well as metadata to create the feed
+// This will come in handy, because I need filenames (for the url),
+// filesizes for enclosures, mimetypes, as well as metadata to create the feed
 
 type xtag struct {
 	audioTags tag.Metadata

@@ -28,6 +28,13 @@ The code, to my mind, is both not idiomatic (because of ignorance, new programme
 ## Tasks as I see them
 - now in the [work log](work-log.md)
 
+## Contributing
+This is a really niche little program for personal use and I wish to keep it that way.  
+Also, I wrote this primarily to help me learn Go.  
+So rather than actual code contributions, I’d love for you to review my code and tell me
+- what you would see improved in terms of the code written
+- while also telling / teaching me *why* you think it should be changed the way you suggest it should be
+
 ## License
 [BSD-2-Clause license.](https://opensource.org/license/bsd-2-clause)
 See [LICENSE](LICENSE)

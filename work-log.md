@@ -43,10 +43,11 @@
 - [X] check only for audio files and print those
 - [X] print them sorted? so i can pass them along in that order to the rss library
 - [X] do we need to sort by filename? or track num? figure that out. *(Narrator: we used track numbers)*
-- [ ] Create a feed
-- [ ] First run!
+- [X] Create a feed
+- [X] First run!
 - [ ] Learn how github releases work, so I can distribute stuff
-- [ ] Blah blah blah  … Lots of missing bits (writing tests, et al)
+- [ ] Integrate feedback from friends and family
 - [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
+- [ ] Tests
 
 ---
