@@ -45,7 +45,8 @@
 - [X] do we need to sort by filename? or track num? figure that out. *(Narrator: we used track numbers)*
 - [X] Create a feed
 - [X] First run!
-- [ ] Learn how github releases work, so I can distribute stuff
+- [X] Learn how github releases work, so I can distribute stuff
+- [ ] Add sample config file and include instructions on placement
 - [ ] Integrate feedback from friends and family
 - [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
 - [ ] Tests
