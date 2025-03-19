@@ -46,6 +46,8 @@
 - [X] Create a feed
 - [X] First run!
 - [X] Learn how github releases work, so I can distribute stuff
+- [ ] if there is a cover, leave it alone
+- [ ] better changelog in goreleaser
 - [ ] Add sample config file and include instructions on placement
 - [ ] Integrate feedback from friends and family
 - [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
