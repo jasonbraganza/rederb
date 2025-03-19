@@ -28,9 +28,9 @@ POSSIBILITY OF SUCH DAMAGE.
 package cmd
 
 import (
+	"github.com/jasonbraganza/rederb/internal/createFeedEngine"
+	"github.com/jasonbraganza/rederb/internal/userFacingInterface"
 	"github.com/spf13/cobra"
-	"rederb/internal/createFeedEngine"
-	"rederb/internal/userFacingInterface"
 )
 
 // createCmd represents the create command

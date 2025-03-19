@@ -41,7 +41,7 @@ var rootCmd = &cobra.Command{
 	Use:     "rederb",
 	Short:   "do, redo. derb, rederb",
 	Long:    `Tiny tool to create podcast rss feeds from a folder full of audio files (m4a, m4b, mp3)`,
-	Version: "0.0.1",
+	Version: "0.1.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

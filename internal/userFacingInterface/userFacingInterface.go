@@ -2,9 +2,9 @@ package userFacingInterface
 
 import (
 	"fmt"
+	"github.com/jasonbraganza/rederb/internal/rederbStructures"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/viper"
-	"rederb/internal/rederbStructures"
 )
 
 /*

@@ -33,7 +33,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package main
 
-import "rederb/cmd"
+import "github.com/jasonbraganza/rederb/cmd"
 
 func main() {
 	cmd.Execute()
