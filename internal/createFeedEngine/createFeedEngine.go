@@ -153,7 +153,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 					Length: audioData.fileSize,
 					Type:   audioData.mimeType,
 				},
-				Description: audioData.audioTags.Lyrics(),
+				Description: getDescription(audioData),
 				Created:     samayMayaHai,
 				Id:          feeds.NewUUID().String(),
 			}
@@ -220,4 +220,16 @@ func buildADictOfAudioFilesWithTags(path string, fileNameList []string) map[int]
 	}
 
 	return rawAudioFileObjectMap
+}
+
+/* ------------------------------------------------------------------------- */
+
+// Get episode descriptions from either comments or lyrics in the audio file's metadata
+func getDescription(audioFileTagStruct xtag) string {
+	if description := audioFileTagStruct.audioTags.Comment(); description != "" {
+		return description
+	} else {
+		return audioFileTagStruct.audioTags.Lyrics()
+	}
+
 }
