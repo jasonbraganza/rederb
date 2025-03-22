@@ -115,16 +115,16 @@ func CreateFeed(rawUrl string, rawPath string) {
 			} else {
 				fmt.Println("Error: ", err)
 			}
-			return
+		} else {
+			_, err = coverArt.Write(imgData)
+			if err != nil {
+				fmt.Println("Error: ", err)
+			}
 		}
 		//err = os.WriteFile(coverArt, imgData, 0644)
 		//if err != nil {
 		//	fmt.Println("There is no cover art")
 		//}
-		_, err = coverArt.Write(imgData)
-		if err != nil {
-			fmt.Println("Error: ", err)
-		}
 
 		coverArtUrl := fmt.Sprint(PodcastUrl + "/cover.jpg")
 
