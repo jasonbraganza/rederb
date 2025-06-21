@@ -158,7 +158,7 @@ func CreateFeed(rawUrl string, rawPath string) {
 				Id:          feeds.NewUUID().String(),
 			}
 			feed.Items = append(feed.Items, feedEntry)
-			samayMayaHai = samayMayaHai.Add(time.Minute)
+			samayMayaHai = samayMayaHai.Add(time.Second)
 		}
 
 		// Write the feed to a file and call it a day

@@ -48,6 +48,7 @@
 - [X] Learn how github releases work, so I can distribute stuff
 - [X] if there is a cover, leave it alone
 - [ ] handle conditions when there is no cover image in the audiofile itself
+- [ ] try moving to the ffmpeg c library
 - [ ] Add sample config file and include instructions on placement
 - [ ] Integrate feedback from friends and family
 - [ ] a `rederb init` command that creates a new config file in the current folder? or saves to `~/.config/rederb/rederb.yaml`
